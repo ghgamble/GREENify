@@ -1,21 +1,21 @@
 <div class="challenge-container container">
 <!-- Total Points -->
-
    <div class="row">
       <div class="col-xs-12 score text-center">
       <h4 class="total-points"> Total Points </h4>
       <span>{{challengeCtrl.totalPoints}}</span>
       </div>
-	</div>
-    <!-- Daily Tasks/worth 5 points each. The five points should be added to the total points when a user clicks through the tasks. -->
-    <div class="row">
-      <div class="daily-tasks col-md-6">{{challengeCtrl.dailyTasks[challengeCtrl.dailyIndex]}}
-         <button class= "btn btn-danger btn-sm button" ng-click="challengeCtrl.completeDailyTask(); challengeCtrl.addFivePoints()">Complete Daily Task</button>
-      </div>
-    <!-- Main Tasks/Worth 20 points each. The 20 points should be added to the total points when a user clicks through the tasks. -->
-      <div class="main-tasks col-md-6" >{{challengeCtrl.mainTasks[challengeCtrl.mainIndex]}}
-         <button  class= "btn btn-danger btn-sm button" ng-click="challengeCtrl.completeMainTask(); challengeCtrl.addTwentyPoints()">Complete Challenge Step</button>
-      </div>
    </div>
-  </div>
+<!-- Daily Tasks -->
+<!-- Cycles through daily tasks when a user clicks that they have completed one -->
+   <div class="daily-tasks col-md-6">
+      <button class= "btn btn-danger btn-sm button" ng-click="challengeCtrl.completeDailyTask(); challengeCtrl.addFivePoints()">Complete Daily Task</button>
+      <span ng-bind-html="challengeCtrl.$sce.trustAsHtml(challengeCtrl.dailyTasks[challengeCtrl.dailyIndex])"></span>
+<!-- Adds five points whenever a user clicks to complete a task -->
+   </div>
+<!-- Main Tasks/Worth 20 points each. The 20 points should be added to the total points when a user clicks through the tasks. -->
+   <div class="main-tasks col-md-6">
+      <button  class= "btn btn-danger btn-sm button" ng-click="challengeCtrl.completeMainTask(); challengeCtrl.addTwentyPoints()">Complete Challenge Step</button>
+      <span ng-bind-html="challengeCtrl.$sce.trustAsHtml(challengeCtrl.mainTasks[challengeCtrl.mainIndex])"></span>
+   </div>
 </div>

@@ -1,5 +1,5 @@
 /* Main Page */
-
+/* Main Container */
 .container-fluid {
   background-image: url("http://reservoirrenewables.com/wp-content/uploads/2014/02/sky-grass-background-reduced2.jpg");
   background-size: center;
@@ -7,7 +7,7 @@
 }
 
 .jumbotron {
-  background-color: rgba(107, 212, 89, 0.75);
+  background-color: rgba(107, 212, 89, 0.60);
   color: #A32B1F;
   margin-bottom: 8px;
   padding-top: 10px;
@@ -16,6 +16,7 @@
   margin-right: 0;
 }
 
+/* Navigation */
 .navbar {
   border: none;
   background-color: #6BD459;
@@ -35,19 +36,19 @@
 /* Home.html */
 
 .game-description {
-  max-width: 650px;
-  font-size: 22px;
-  margin: 30px;
-  background-color: #ffffff;
-  border: 1px solid black;
-  opacity: 0.3;
-  filter: alpha(opacity=60);
-  margin: auto;
-  margin-top: 45px;
-  text-align: center;
-  color: black;
-  padding: 5px;
-  border-radius: 10px;
+   max-width: 650px;
+   font-size: 22px;
+   margin: 30px;
+   background-color: #ffffff;
+   border: 1px solid black;
+   opacity: 0.3;
+   filter: alpha(opacity=60);
+   margin: auto;
+   margin-top: 45px;
+   text-align: center;
+   color: black;
+   padding: 5px;
+   border-radius: 10px;
 }
 
 /* Challenge.html */

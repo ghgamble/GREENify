@@ -5,7 +5,7 @@ angular.module("Greenify", ["ui.router"])
     .controller("challengeController", challengeController)
 
     GreenRouter.$inject = ["$stateProvider", "$urlRouterProvider"]
-    challengeController.$inject = ["GreenFactory", "$state"]
+    challengeController.$inject = ["GreenFactory", "$state", "$sce"]
 
     function GreenRouter ($stateProvider, $urlRouterProvider) {
       $stateProvider
@@ -27,8 +27,9 @@ angular.module("Greenify", ["ui.router"])
       hCtrl.title = "Home"
     }
 
-    function challengeController (GreenFactory, $state) {
+    function challengeController (GreenFactory, $state, $sce) {
       var challengeCtrl = this;
+      challengeCtrl.$sce = $sce;
       challengeCtrl.title = "Challenge";
       /*Click through main tasks and only display one at a time*/
       challengeCtrl.mainIndex = 0;
