@@ -33,8 +33,12 @@ angular.module("Greenify", ["ui.router"])
     }
 
     function homeController() {
-      var hCtrl = this;
-      hCtrl.title = "Home"
+      var homeCtrl = this;
+    }
+
+    function loginController () {
+      var loginCtrl = this;
+
     }
 
     function challengeController (GreenFactory, $state, $sce) {
@@ -63,5 +67,10 @@ angular.module("Greenify", ["ui.router"])
       challengeCtrl.addTwentyPoints = function() {
         challengeCtrl.totalPoints +=20;
       }
+    }
+
+    function contactController () {
+      var contactCtrl = this;
+
     }
 })();
