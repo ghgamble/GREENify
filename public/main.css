@@ -1,9 +1,11 @@
 /* Main Page */
 /* Main Container */
-.container-fluid {
-  background-image: url("http://reservoirrenewables.com/wp-content/uploads/2014/02/sky-grass-background-reduced2.jpg");
-  background-size: center;
-  background-repeat: no-repeat;
+body {
+  background: url("https://images.unsplash.com/uploads/14114036359651bd991f1/b3ed8fdf?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=f522d9aa3c2ff08ee35e06b019e9baa7") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .jumbotron {
@@ -39,7 +41,7 @@
    margin: 30px;
    background-color: #ffffff;
    border: 1px solid black;
-   opacity: 0.3;
+   opacity: 0.4;
    filter: alpha(opacity=60);
    margin: auto;
    margin-top: 45px;
