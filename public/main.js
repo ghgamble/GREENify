@@ -20,9 +20,14 @@ angular.module("Greenify", ["ui.router"])
            controller: "loginController as loginCtrl"
         })
         .state("challenge", {
-          url: "/challenge",
-          templateUrl: "challenge.html",
-          controller: "challengeController as challengeCtrl"
+           url: "/challenge",
+           templateUrl: "challenge.html",
+           controller: "challengeController as challengeCtrl"
+        })
+        .state("contact-us", {
+           url: "/contact-us",
+           templateUrl: "contact-us.html",
+           controller: "contactController as contactCtrl"
         })
         $urlRouterProvider.otherwise('/')
     }
