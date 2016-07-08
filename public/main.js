@@ -14,6 +14,11 @@ angular.module("Greenify", ["ui.router"])
           templateUrl: "home.html",
           controller: "homeController as homeCtrl"
         })
+        .state("log-in", {
+           url: "/log-in",
+           templateUrl: "log-in.html",
+           controller: "loginController as loginCtrl"
+        })
         .state("challenge", {
           url: "/challenge",
           templateUrl: "challenge.html",
