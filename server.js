@@ -3,7 +3,8 @@ var bodyParser = require('body-parser')
 var logger = require('morgan')
 // var mongoose = require('mongoose')
 // var apiRouter = require('./api_routes')
-var port = 80
+console.log('PORT', process.env.PORT)
+var port = process.env.PORT || 80
 
 var app = express()
 
