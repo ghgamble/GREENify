@@ -1,15 +1,15 @@
 <div class="sign-up-form">
    <h3>New user? Sign-up here!</h3>
-   <form class="new-user">
-      <input placeholder="Username">
-      <input placeholder="Email">
-      <input placeholder="Password">
+   <form ng-submit="signup()" class="new-user">
+      <input placeholder="Username" ng-model="signupForm.username">
+      <input placeholder="Email" ng-model="signupForm.email">
+      <input placeholder="Password" ng-model="signupForm.password">
       <input type="submit" value="Sign Up">
    </form>
    <h3>Already signed up? Log in here!</h3>
-   <form class="returning-user">
-      <input placeholder="Username">
-      <input placeholder="Password">
+   <form ng-submit="login()" class="returning-user">
+      <input placeholder="Username" ng-model="loginForm.username">
+      <input placeholder="Password" ng-model="loginForm.password">
       <input type="submit" value="Log In">
    </form>
 </div>

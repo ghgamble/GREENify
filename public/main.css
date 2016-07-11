@@ -118,5 +118,13 @@ a:hover {
    text-align: center;
    color: black;
    padding: 5px;
-   border-radius: 10px;   
+   border-radius: 10px;
+}
+
+.email {
+   text-decoration: none;
+}
+
+.email a:hover {
+   text-decoration: none;
 }

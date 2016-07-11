@@ -10,7 +10,7 @@ var userSchema = mongoose.Schema({
       unique: true
    },
    password: String,
-   challengeStep: [challenge: {
+   challengeStep: [{
       type: mongoose.Schema.ObjectId,
       ref: 'Challenge'
    }]

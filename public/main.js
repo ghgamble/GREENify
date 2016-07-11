@@ -8,6 +8,7 @@ angular.module("Greenify", ["ui.router"])
 
     GreenRouter.$inject = ["$stateProvider", "$urlRouterProvider"]
     challengeController.$inject = ["GreenFactory", "$state", "$sce"]
+    loginController.$inject = ["$scope", "$http"]
 
     function GreenRouter ($stateProvider, $urlRouterProvider) {
       $stateProvider
@@ -38,9 +39,30 @@ angular.module("Greenify", ["ui.router"])
       var homeCtrl = this;
     }
 
-    function loginController () {
+    function loginController ($scope, $http) {
       var loginCtrl = this;
       console.log("Hello login control");
+      $scope.signup = function(){
+            $http({
+                method : 'POST',
+                url    : '/signup',
+                data   : $scope.signupForm
+            }).then(function(returnData){
+                console.log(returnData)
+                if ( returnData.data.success ) { window.location.href="/#/challenge" }
+            })
+        }
+
+        $scope.login = function(){
+            $http({
+                method : 'POST',
+                url    : '/login',
+                data   : $scope.loginForm
+            }).then(function(returnData){
+                if ( returnData.data.success ) { window.location.href="/#/challenge" }
+                else { console.log(returnData)}
+            })
+        }
     }
 
     function challengeController (GreenFactory, $state, $sce) {
@@ -74,6 +96,6 @@ angular.module("Greenify", ["ui.router"])
     function contactController () {
       var contactCtrl = this;
       console.log('Hello contact-us')
-      
+
     }
 })();
