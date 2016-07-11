@@ -73,6 +73,6 @@ angular.module("Greenify", ["ui.router"])
 
     function contactController () {
       var contactCtrl = this;
-
+      console.log('Hello contact-us')
     }
 })();
