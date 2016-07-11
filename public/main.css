@@ -99,10 +99,24 @@ a:hover {
    margin: 30px;
 }
 
-
-
 /* Challenge.html */
 .score {
    margin-top: 75px;
    margin-bottom: 30px;
+}
+
+.contact-form {
+   max-width: 650px;
+   font-size: 22px;
+   margin: 30px;
+   background-color: #ffffff;
+   border: 1px solid black;
+   opacity: 0.4;
+   filter: alpha(opacity=60);
+   margin: auto;
+   margin-top: 35px;
+   text-align: center;
+   color: black;
+   padding: 5px;
+   border-radius: 10px;   
 }

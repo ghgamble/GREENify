@@ -3,6 +3,8 @@ angular.module("Greenify", ["ui.router"])
     .config(GreenRouter)
     .controller("homeController", homeController)
     .controller("challengeController", challengeController)
+    .controller("loginController", loginController)
+    .controller("contactController", contactController)
 
     GreenRouter.$inject = ["$stateProvider", "$urlRouterProvider"]
     challengeController.$inject = ["GreenFactory", "$state", "$sce"]
@@ -29,7 +31,7 @@ angular.module("Greenify", ["ui.router"])
            templateUrl: "contact-us.html",
            controller: "contactController as contactCtrl"
         })
-        $urlRouterProvider.otherwise('/')
+        $urlRouterProvider.otherwise("/")
     }
 
     function homeController() {
@@ -38,7 +40,7 @@ angular.module("Greenify", ["ui.router"])
 
     function loginController () {
       var loginCtrl = this;
-
+      console.log("Hello login control");
     }
 
     function challengeController (GreenFactory, $state, $sce) {
