@@ -44,11 +44,15 @@ body {
    opacity: 0.4;
    filter: alpha(opacity=60);
    margin: auto;
-   margin-top: 45px;
+   margin-top: 35px;
    text-align: center;
    color: black;
    padding: 5px;
    border-radius: 10px;
+}
+
+.text-center {
+   margin-top: 35px;
 }
 
 /* Challenge.html */
@@ -57,7 +61,21 @@ body {
    margin-bottom: 30px;
 }
 
+/* Buttons for home and challenge pages */
 .button {
-   background: green;
+   background: #6bd459;
    border: 1px solid green;
+   color: #A32B1F;
+   font-size: 14px;
+   padding: 15px;
+}
+
+.button a {
+   color: #A32B1F;
+}
+
+a:hover {
+   color: #3E6A85;
+   background-color: #6bd459;
+   text-decoration: none;
 }
