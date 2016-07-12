@@ -69,18 +69,6 @@ angular.module("Greenify", ["ui.router"])
       var challengeCtrl = this;
       // challengeCtrl.challenges = []
       challengeCtrl.currentChallenge = {}
-      $http.get('/api/me')
-         .then(function(res){
-            challengeCtrl.thisUser = res.data
-            if(!res.data){
-               $state.go('log-in')
-            }
-
-         })
-      $http.get('/api/challenges')
-         .then(function(res){
-            challengeCtrl.completeApiCall(res)
-         })
       challengeCtrl.$sce = $sce;
       challengeCtrl.totalPoints = 0;
       //nextChallenge = challengeCtrl.challenges[0]
@@ -98,6 +86,17 @@ angular.module("Greenify", ["ui.router"])
       challengeCtrl.completeDailyReminder = function(){
 
       }
+
+      $http.get('/api/me')
+         .then(function(res){
+            challengeCtrl.thisUser = res.data
+            if(!res.data){
+               $state.go('log-in')
+            }
+
+         })
+      $http.get('/api/challenges')
+         .then(challengeCtrl.completeApiCall)
    }
 
     function contactController () {
