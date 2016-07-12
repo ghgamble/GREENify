@@ -16,7 +16,7 @@
    </div>
 <!-- Main Tasks/Worth 20 points each. The 20 points should be added to the total points when a user clicks through the tasks. -->
    <div class="steps challenge">
-      {{challengeCtrl.challenges[0].step}}!!
+      {{challengeCtrl.currentChallenge.step}}!!
       <div class="main-step"><span ng-bind-html="challengeCtrl.$sce.trustAsHtml(nextChallenge.step)"></span></div>
       <div class="main-button"><button class= "btn btn-danger btn-sm button main-button" ng-click="challengeCtrl.completeMainTask()">Complete Challenge Step</button></div>
    </div>

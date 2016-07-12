@@ -67,7 +67,8 @@ angular.module("Greenify", ["ui.router"])
 
     function challengeController (GreenFactory, $state, $sce, $http) {
       var challengeCtrl = this;
-      challengeCtrl.initialChallenge = {}
+      // challengeCtrl.challenges = []
+      challengeCtrl.currentChallenge = {}
       $http.get('/api/me')
          .then(function(res){
             challengeCtrl.thisUser = res.data
@@ -88,12 +89,12 @@ angular.module("Greenify", ["ui.router"])
       // }
       challengeCtrl.completeApiCall = function(res){
          challengeCtrl.challenges = res.data
+         challengeCtrl.currentChallenge = res.data[0]
          console.log("challenges", res.data)
       }
       challengeCtrl.completeMainTask = function(res){
          console.log('hello button clicked')
       }
-      /*Click through daily tasks and only display one at a time*/
       challengeCtrl.completeDailyReminder = function(){
 
       }

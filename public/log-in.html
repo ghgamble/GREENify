@@ -3,13 +3,13 @@
    <form ng-submit="signup()" class="new-user">
       <input class="inputs" placeholder="Username" ng-model="signupForm.username">
       <input class="inputs" placeholder="Email" ng-model="signupForm.email">
-      <input class="inputs" placeholder="Password" ng-model="signupForm.password">
+      <input class="inputs" placeholder="Password" type="password" ng-model="signupForm.password">
       <input class="form-button" type="submit" value="Sign Up">
    </form>
    <h3>Already signed up? Log in here!</h3>
    <form ng-submit="login()" class="returning-user">
-      <input class="inputs" placeholder="Username" ng-model="loginForm.username">
-      <input class="inputs" placeholder="Password" ng-model="loginForm.password">
+      <input class="inputs" placeholder="Username" ng-model="loginForm.username" autocomplete="on">
+      <input class="inputs" placeholder="Password" type="password" ng-model="loginForm.password">
       <input class="form-button" type="submit" value="Log In">
    </form>
 </div>
