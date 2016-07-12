@@ -7,7 +7,7 @@ angular.module("Greenify", ["ui.router"])
     .controller("contactController", contactController)
 
     GreenRouter.$inject = ["$stateProvider", "$urlRouterProvider"]
-    challengeController.$inject = ["GreenFactory", "$state", "$sce"]
+    challengeController.$inject = ["GreenFactory", "$state", "$sce", "$http"]
     loginController.$inject = ["$scope", "$http"]
 
     function GreenRouter ($stateProvider, $urlRouterProvider) {
@@ -65,33 +65,39 @@ angular.module("Greenify", ["ui.router"])
         }
     }
 
-    function challengeController (GreenFactory, $state, $sce) {
+    function challengeController (GreenFactory, $state, $sce, $http) {
       var challengeCtrl = this;
+      challengeCtrl.initialChallenge = {}
+      $http.get('/api/me')
+         .then(function(res){
+            challengeCtrl.thisUser = res.data
+            if(!res.data){
+               $state.go('log-in')
+            }
+
+         })
+      $http.get('/api/challenges')
+         .then(function(res){
+            challengeCtrl.completeApiCall(res)
+         })
       challengeCtrl.$sce = $sce;
-      challengeCtrl.title = "Challenge";
-      /*Click through main tasks and only display one at a time*/
-      challengeCtrl.mainIndex = 0;
-      challengeCtrl.mainTasks = GreenFactory.mainTasks;
-      challengeCtrl.completeMainTask = function(){
-        challengeCtrl.mainIndex++
+      challengeCtrl.totalPoints = 0;
+      //nextChallenge = challengeCtrl.challenges[0]
+      // challengeCtrl.handleData = function(data) {
+      //    console.log(data)
+      // }
+      challengeCtrl.completeApiCall = function(res){
+         challengeCtrl.challenges = res.data
+         console.log("challenges", res.data)
+      }
+      challengeCtrl.completeMainTask = function(res){
+         console.log('hello button clicked')
       }
       /*Click through daily tasks and only display one at a time*/
-      challengeCtrl.dailyIndex = 0;
-      challengeCtrl.dailyTasks = GreenFactory.dailyTasks;
-      challengeCtrl.completeDailyTask = function(){
-        challengeCtrl.dailyIndex++
+      challengeCtrl.completeDailyReminder = function(){
+
       }
-      /*Start with total points at 0*/
-      challengeCtrl.totalPoints = 0;
-      /*Add five points to totalPoints from the daily tasks ng-click*/
-      challengeCtrl.addFivePoints = function() {
-        challengeCtrl.totalPoints +=5;
-      }
-      /*Add 20 points to totalPoints from the main tasks ng-click*/
-      challengeCtrl.addTwentyPoints = function() {
-        challengeCtrl.totalPoints +=20;
-      }
-    }
+   }
 
     function contactController () {
       var contactCtrl = this;

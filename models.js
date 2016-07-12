@@ -17,8 +17,15 @@ var userSchema = mongoose.Schema({
 })
 
 var challengeSchema = mongoose.Schema({
+   stepNumber: {
+      type: Number,
+      unique: true,
+      required: true
+   },
    step: String,
-   points: Number
+   points: Number,
+   dailyReminder: Boolean,
+   reminderText: String
 })
 
 var User = mongoose.model('User', userSchema)

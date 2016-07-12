@@ -14,7 +14,8 @@ var port = process.env.PORT || 80
 var app = express()
 
 var User = models.User
-console.log('User', User)
+var Challenge = models.Challenge
+//console.log('User', User)
 
 mongoose.connect('mongodb://localhost/greenify', function(error) {
     if(error) console.error('ERROR starting mongoose!', error)
@@ -104,6 +105,15 @@ app.post('/login', function(req, res, next){
             return res.send({success:'success'});
         });
     })(req, res, next);
+})
+
+app.get('/api/me', function(req, res){
+   res.send(req.user)
+})
+app.get('/api/challenges', function(req, res){
+   Challenge.find({}, function(err, challenges){
+      res.send(challenges)
+   }).sort('stepNumber')
 })
 
 
