@@ -2,22 +2,30 @@
 <!-- Total Points -->
    <div class="row total-points">
       <div class="col-xs-12 score text-center">
-      <h4 class="points"> Total Points </h4>
+      <h3 class="points"> Total Points </h3>
       <span>{{challengeCtrl.totalPoints}}</span>
       </div>
    </div>
-<!-- Daily Tasks -->
-<!-- Cycles through daily tasks when a user clicks that they have completed one -->
-<!-- col-md-12 text-center -->
+
    <div class="steps">
-      <button class= "btn btn-danger btn-sm button" ng-click="challengeCtrl.completeDailyTask(); challengeCtrl.addFivePoints()">Complete Daily Task</button>
-      <span ng-bind-html="challengeCtrl.$sce.trustAsHtml(challengeCtrl.dailyTasks[challengeCtrl.dailyIndex])"></span>
-<!-- Adds five points whenever a user clicks to complete a task -->
+      <h3>Daily Reminders</h3>
+      <div class="checkbox">
+         <label>
+            <input type="checkbox" value="">
+            <!-- ng-repeat="challengeCtrl.currentChallenge.reminderText"> -->
+            Did you remember to {{challengeCtrl.currentChallenge.reminderText}}
+         </label>
+      </div>
+      <div>
+         <button type="submit" class="btn btn-danger main-button button" ng-click="challengeCtrl.completeDailyReminder()">Add Points</button>
+      </div>
    </div>
-<!-- Main Tasks/Worth 20 points each. The 20 points should be added to the total points when a user clicks through the tasks. -->
+
    <div class="steps challenge">
-      {{challengeCtrl.currentChallenge.step}}!!
-      <div class="main-step"><span ng-bind-html="challengeCtrl.$sce.trustAsHtml(nextChallenge.step)"></span></div>
-      <div class="main-button"><button class= "btn btn-danger btn-sm button main-button" ng-click="challengeCtrl.completeMainTask()">Complete Challenge Step</button></div>
+      <h3>Challenge</h3>
+      <span ng-bind-html="challengeCtrl.$sce.trustAsHtml(challengeCtrl.currentChallenge.step)"></span>
+      <div class="main-button">
+         <button class= "btn btn-danger btn-sm button main-button" ng-click="challengeCtrl.completeMainTask()">Complete Step</button>
+      </div>
    </div>
 </div>

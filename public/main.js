@@ -1,10 +1,8 @@
 (function () {
 angular.module("Greenify", ["ui.router"])
     .config(GreenRouter)
-    .controller("homeController", homeController)
     .controller("challengeController", challengeController)
     .controller("loginController", loginController)
-    .controller("contactController", contactController)
 
     GreenRouter.$inject = ["$stateProvider", "$urlRouterProvider"]
     challengeController.$inject = ["GreenFactory", "$state", "$sce", "$http"]
@@ -15,7 +13,6 @@ angular.module("Greenify", ["ui.router"])
         .state("home", {
           url: "/",
           templateUrl: "home.html",
-          controller: "homeController as homeCtrl"
         })
         .state("log-in", {
            url: "/log-in",
@@ -30,13 +27,8 @@ angular.module("Greenify", ["ui.router"])
         .state("contact-us", {
            url: "/contact-us",
            templateUrl: "contact-us.html",
-           controller: "contactController as contactCtrl"
         })
         $urlRouterProvider.otherwise("/")
-    }
-
-    function homeController() {
-      var homeCtrl = this;
     }
 
     function loginController ($scope, $http) {
@@ -61,47 +53,59 @@ angular.module("Greenify", ["ui.router"])
             }).then(function(returnData){
                 if ( returnData.data.success ) { window.location.href="/#/challenge" }
                 else { console.log(returnData)}
+                console.log('the user ', returnData)
             })
         }
     }
 
     function challengeController (GreenFactory, $state, $sce, $http) {
       var challengeCtrl = this;
-      // challengeCtrl.challenges = []
       challengeCtrl.currentChallenge = {}
+      challengeCtrl.dailyReminder = {}
       challengeCtrl.$sce = $sce;
       challengeCtrl.totalPoints = 0;
-      //nextChallenge = challengeCtrl.challenges[0]
-      // challengeCtrl.handleData = function(data) {
-      //    console.log(data)
-      // }
+      var challengeIndex = 0;
       challengeCtrl.completeApiCall = function(res){
          challengeCtrl.challenges = res.data
-         challengeCtrl.currentChallenge = res.data[0]
+         challengeCtrl.currentChallenge = res.data[challengeIndex]
          console.log("challenges", res.data)
       }
       challengeCtrl.completeMainTask = function(res){
-         console.log('hello button clicked')
+         console.log('complete main task button clicked')
+         //Add points from the challenge step/current iteration of the array to the total points and to the user's total points
+         $http.post('/api/users', challengeCtrl.currentChallenge)
+            .then(function(res){
+               challengeIndex++
+               challengeCtrl.currentChallenge = challengeCtrl.challenges[challengeIndex]
+               $http.get('/api/me')
+                  .then(function(res){
+                     console.log(res)
+                     challengeCtrl.totalPoints = res.data.totalPoints
+                  })
+            })
+         //Add the current step/iteration of the array to the user's database
+         //Display the next step/iteration of the array of challenges from database
       }
-      challengeCtrl.completeDailyReminder = function(){
-
+      challengeCtrl.completeDailyReminder = function(res){
+         console.log('complete daily reminder button clicked')
+         //$http.post('/api/challenges', )
       }
 
-      $http.get('/api/me')
-         .then(function(res){
-            challengeCtrl.thisUser = res.data
-            if(!res.data){
-               $state.go('log-in')
-            }
-
-         })
       $http.get('/api/challenges')
          .then(challengeCtrl.completeApiCall)
-   }
-
-    function contactController () {
-      var contactCtrl = this;
-      console.log('Hello contact-us')
-
-    }
+         .then(function(res){
+            $http.get('/api/me')
+               .then(function(res){
+                  if(!res.data){
+                     $state.go('log-in')
+                  }
+                  else {
+                     challengeCtrl.thisUser = res.data
+                     challengeCtrl.totalPoints = res.data.totalPoints
+                     challengeIndex = res.data.challengeStep.length
+                     challengeCtrl.currentChallenge = challengeCtrl.challenges[challengeIndex]
+                  }
+               })
+         })
+     }
 })();

@@ -13,7 +13,11 @@ var userSchema = mongoose.Schema({
    challengeStep: [{
       type: mongoose.Schema.ObjectId,
       ref: 'Challenge'
-   }]
+   }],
+   totalPoints :{
+      type: Number,
+      default: 0
+   }
 })
 
 var challengeSchema = mongoose.Schema({

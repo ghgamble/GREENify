@@ -115,7 +115,27 @@ app.get('/api/challenges', function(req, res){
       res.send(challenges)
    }).sort('stepNumber')
 })
-
+app.post('/api/users', function(req, res){
+   console.log(req.body)
+   res.send('challenge')
+   User.findOne({'username' : req.user.username}, function(error, user){
+      console.log("user", user)
+      user.totalPoints += req.body.points
+      user.challengeStep.push(req.body)
+      user.save(function(error, user){
+         console.log(error, user)
+      })
+   })
+})
+// app.post('/api/challenges', function(req, res){
+//    User.findOne({'username' : req.user.username}, function(error, user){
+//       console.log("user", user)
+//       if (user.challengeStep.dailyReminder === true) {
+//          console.log(dailyReminder)
+//          user.challengeStep.dailyReminder.push(req.body)
+//       }
+//    })
+// })
 
 app.listen(port, function(error){
     if(error) console.log('ERROR starting server!', error)
