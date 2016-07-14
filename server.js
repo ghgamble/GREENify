@@ -5,6 +5,7 @@ var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
 var session = require('express-session')
 var bcrypt = require('bcrypt')
+var logOut = require('express-passport-logout')
 var mongoose = require('mongoose')
 var models = require('./models')
 // var apiRouter = require('./api_routes')
@@ -96,6 +97,13 @@ app.post('/signup', function(req, res){
     })
 })
 
+app.get('/logout', function(req, res){
+    console.log("logging out ......", req.session);
+    req.logout();
+    req.session.destroy();
+    res.redirect('/');
+})
+
 app.post('/login', function(req, res, next){
     passport.authenticate('local', function(err, user, info) {
         if (err) { return next(err); }
@@ -108,34 +116,38 @@ app.post('/login', function(req, res, next){
 })
 
 app.get('/api/me', function(req, res){
-   res.send(req.user)
+   if(req.user == undefined) {
+      res.status(403).send({ error: 'Not Logged in' })
+   } else {
+      //console.log('the req object', req.user)
+      User.findOne({
+         username: req.user.username
+      })
+      .populate('challengeStep')
+      .exec(function(error, User){
+         res.send(User)
+      })
+   }
 })
+
 app.get('/api/challenges', function(req, res){
    Challenge.find({}, function(err, challenges){
       res.send(challenges)
    }).sort('stepNumber')
 })
+
 app.post('/api/users', function(req, res){
    console.log(req.body)
    res.send('challenge')
    User.findOne({'username' : req.user.username}, function(error, user){
-      console.log("user", user)
+      //console.log("user", user)
       user.totalPoints += req.body.points
       user.challengeStep.push(req.body)
       user.save(function(error, user){
-         console.log(error, user)
+         //console.log(error, user)
       })
    })
 })
-// app.post('/api/challenges', function(req, res){
-//    User.findOne({'username' : req.user.username}, function(error, user){
-//       console.log("user", user)
-//       if (user.challengeStep.dailyReminder === true) {
-//          console.log(dailyReminder)
-//          user.challengeStep.dailyReminder.push(req.body)
-//       }
-//    })
-// })
 
 app.listen(port, function(error){
     if(error) console.log('ERROR starting server!', error)

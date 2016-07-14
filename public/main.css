@@ -134,7 +134,7 @@ a:hover {
 
 .steps {
    max-width: 650px;
-   height: 200px;
+   height: 300px;
    font-size: 22px;
    margin: 30px;
    background-color: rgba(255, 255, 255, 0.4);
@@ -162,6 +162,10 @@ a:hover {
 .main-button {
    /*margin-top: 10px;*/
    margin-bottom: 20px;
+}
+
+.log-out-button {
+   text-align: center;
 }
 
 /* Contact-us.html */

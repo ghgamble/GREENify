@@ -1,19 +1,19 @@
 <div class="challenge-container container">
-<!-- Total Points -->
    <div class="row total-points">
       <div class="col-xs-12 score text-center">
+      <h2>Hello, {{challengeCtrl.thisUser.username}}</h2>
       <h3 class="points"> Total Points </h3>
       <span>{{challengeCtrl.totalPoints}}</span>
       </div>
    </div>
 
-   <div class="steps">
+   <div class="steps" ng-show="challengeCtrl.thisUser.challengeStep.length >= 0">
       <h3>Daily Reminders</h3>
       <div class="checkbox">
-         <label>
+         <label ng-repeat="reminder in challengeCtrl.dailyReminders">
             <input type="checkbox" value="">
             <!-- ng-repeat="challengeCtrl.currentChallenge.reminderText"> -->
-            Did you remember to {{challengeCtrl.currentChallenge.reminderText}}
+            <span>Did you remember to {{reminder.reminderText}}</span>
          </label>
       </div>
       <div>
@@ -27,5 +27,8 @@
       <div class="main-button">
          <button class= "btn btn-danger btn-sm button main-button" ng-click="challengeCtrl.completeMainTask()">Complete Step</button>
       </div>
+   </div>
+   <div class="log-out-button">
+      <button class="form-button main-button button"><a href="/logout">Log Out</a></button>
    </div>
 </div>
