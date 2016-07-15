@@ -119,7 +119,6 @@ app.get('/api/me', function(req, res){
    if(req.user == undefined) {
       res.status(403).send({ error: 'Not Logged in' })
    } else {
-      //console.log('the req object', req.user)
       User.findOne({
          username: req.user.username
       })
@@ -140,11 +139,10 @@ app.post('/api/users', function(req, res){
    console.log(req.body)
    res.send('challenge')
    User.findOne({'username' : req.user.username}, function(error, user){
-      //console.log("user", user)
       user.totalPoints += req.body.points
       user.challengeStep.push(req.body)
       user.save(function(error, user){
-         //console.log(error, user)
+
       })
    })
 })

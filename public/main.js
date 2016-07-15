@@ -33,14 +33,12 @@ angular.module("Greenify", ["ui.router"])
 
     function loginController ($scope, $http) {
       var loginCtrl = this;
-      //console.log("Hello login control");
       $scope.signup = function(){
             $http({
                 method : 'POST',
                 url    : '/signup',
                 data   : $scope.signupForm
             }).then(function(returnData){
-                //console.log(returnData)
                 if ( returnData.data.success ) { window.location.href="/#/challenge" }
             })
         }
@@ -53,14 +51,12 @@ angular.module("Greenify", ["ui.router"])
             }).then(function(returnData){
                 if ( returnData.data.success ) { window.location.href="/#/challenge" }
                 else { console.log(returnData)}
-                //console.log('the user ', returnData)
             })
         }
    }
 
     function challengeController ($state, $sce, $http) {
       var challengeCtrl = this;
-      //challengeCtrl.username = res.data.username
       challengeCtrl.currentChallenge = {}
       challengeCtrl.dailyReminder = {}
       challengeCtrl.$sce = $sce;
@@ -69,10 +65,8 @@ angular.module("Greenify", ["ui.router"])
       challengeCtrl.completeApiCall = function(res){
          challengeCtrl.challenges = res.data
          challengeCtrl.currentChallenge = res.data[challengeIndex]
-         //console.log("challenges", res.data)
       }
       challengeCtrl.completeMainTask = function(res){
-         //console.log('complete main task button clicked')
          $http.post('/api/users', challengeCtrl.currentChallenge)
             .then(function(res){
                challengeIndex++
@@ -80,9 +74,7 @@ angular.module("Greenify", ["ui.router"])
                challengeCtrl.previousChallenge = challengeCtrl.challenges[challengeIndex-1]
                $http.get('/api/me')
                   .then(function(res){
-                     //console.log(res)
                      challengeCtrl.totalPoints = res.data.totalPoints
-                     //console.log("current challenge ", challengeCtrl.currentChallenge)
                      if (challengeCtrl.previousChallenge.dailyReminder)
                         challengeCtrl.dailyReminders.push(challengeCtrl.previousChallenge)
                   })
@@ -90,8 +82,19 @@ angular.module("Greenify", ["ui.router"])
 
       }
       challengeCtrl.completeDailyReminder = function(res){
-         //console.log('complete daily reminder button clicked')
-         //$http.post('/api/challenges', )
+         console.log('Daily reminder button clicked!')
+         challengeCtrl.reminder = document.querySelector('input[type=checkbox]')
+         challengeCtrl.reminder.forEach(function(checked){
+            if (challengeCtrl.reminder.checked) {
+               challengeCtrl.totalPoints += 5
+            }
+         })
+         challengeCtrl.totalPoints
+         // if (challengeCtrl.reminder.checked) {
+         //    console.log(challengeCtrl.reminder.checked)
+         //    challengeCtrl.totalPoints += 5
+         //    console.log(challengeCtrl.totalPoints)
+         // }
       }
 
       $http.get('/api/challenges')
@@ -105,19 +108,16 @@ angular.module("Greenify", ["ui.router"])
                   }
                   else {
                      challengeCtrl.thisUser = res.data
-                     //console.log(challengeCtrl.thisUser)
                      challengeCtrl.totalPoints = res.data.totalPoints
                      challengeIndex = res.data.challengeStep.length
                      challengeCtrl.currentChallenge = challengeCtrl.challenges[challengeIndex]
                      challengeCtrl.dailyReminders = []
-                     //console.log("user's challenges", challengeCtrl.thisUser.challengeStep)
                      challengeCtrl.thisUser.challengeStep.forEach(function(step){
                         if (step.dailyReminder) {
                            challengeCtrl.dailyReminders.push(step)
                         }
                      })
                      challengeCtrl.dailyReminders
-                     //console.log(challengeCtrl.dailyReminders)
                   }
                }, function() {
                   $state.go('log-in')

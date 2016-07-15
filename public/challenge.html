@@ -9,10 +9,9 @@
 
    <div class="steps" ng-show="challengeCtrl.thisUser.challengeStep.length >= 0">
       <h3>Daily Reminders</h3>
-      <div class="checkbox">
+      <div>
          <label ng-repeat="reminder in challengeCtrl.dailyReminders">
-            <input type="checkbox" value="">
-            <!-- ng-repeat="challengeCtrl.currentChallenge.reminderText"> -->
+            <input type="checkbox" id="reminder">
             <span>Did you remember to {{reminder.reminderText}}</span>
          </label>
       </div>
