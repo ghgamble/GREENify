@@ -134,7 +134,7 @@ a:hover {
 
 .steps {
    max-width: 650px;
-   height: 300px;
+   height: 400px;
    font-size: 22px;
    margin: 30px;
    background-color: rgba(255, 255, 255, 0.4);
@@ -160,10 +160,15 @@ a:hover {
    margin-bottom: 20px;
 }*/
 
+.challenge-text {
+   margin-top: 20px;
+}
+
 .complete-button {
    position: absolute;
-   top: 60%;
-   left: 40%;
+   left: 50%;
+   transform: translateX(-50%);
+   top: 70%;
 }
 
 .challenge-title {

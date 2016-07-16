@@ -8,7 +8,7 @@
    </div>
    <div class="steps challenge">
       <h3 class="challenge-title">Challenge</h3>
-      <span class="challenge-text" ng-bind-html="challengeCtrl.$sce.trustAsHtml(challengeCtrl.currentChallenge.step)"></span>
+      <div class="challenge-text"><span ng-bind-html="challengeCtrl.$sce.trustAsHtml(challengeCtrl.currentChallenge.step)"></span></div>
       <div class="main-button">
          <button class= "btn btn-danger btn-sm button main-button complete-button" ng-click="challengeCtrl.completeMainTask()">Complete Step</button>
       </div>

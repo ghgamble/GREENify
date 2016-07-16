@@ -58,6 +58,7 @@ angular.module("Greenify", ["ui.router"])
             })
         }
    }
+
     function challengeController ($state, $sce, $http) {
       var challengeCtrl = this;
       challengeCtrl.currentChallenge = {}

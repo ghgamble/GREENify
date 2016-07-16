@@ -6,6 +6,7 @@
       <input class="inputs" placeholder="Password" type="password" ng-model="signupForm.password">
       <input class="form-button" type="submit" value="Sign Up">
    </form>
+
    <h3>Already signed up? Log in here!</h3>
    <form ng-submit="login()" class="returning-user">
       <input class="inputs" placeholder="Username" ng-model="loginForm.username" autocomplete="on">
@@ -13,8 +14,4 @@
       <input class="form-button" type="submit" value="Log In">
    </form>
    {{errMessage}}
-   <!-- <form ng-submit="logout()">
-      <input class="form-button" type="submit" value="Log Out">
-   </form> -->
-
 </div>
