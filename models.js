@@ -12,7 +12,7 @@ var userSchema = mongoose.Schema({
    password: String,
    challengeStep: [{
       type: mongoose.Schema.ObjectId,
-      ref: 'Challenge'
+      ref: 'Challenge',
    }],
    totalPoints :{
       type: Number,
@@ -32,10 +32,23 @@ var challengeSchema = mongoose.Schema({
    reminderText: String
 })
 
+var progressSchema = mongoose.Schema({
+   completedStep: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Challenge',
+   },
+   user: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User'
+   }
+})
+
 var User = mongoose.model('User', userSchema)
 var Challenge = mongoose.model('Challenge', challengeSchema)
+var Progress = mongoose.model('Progress', progressSchema)
 
 module.exports = {
    User : User,
-   Challenge : Challenge
+   Challenge : Challenge,
+   Progress : Progress
 }

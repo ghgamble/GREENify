@@ -39,7 +39,7 @@ angular.module("Greenify", ["ui.router"])
                 url    : '/signup',
                 data   : $scope.signupForm
             }).then(function(returnData){
-                if ( returnData.data.success ) { window.location.href="/#/challenge" }
+                if ( returnData.data.success ) {window.location.href="/#/challenge"}
             })
         }
 
@@ -49,16 +49,21 @@ angular.module("Greenify", ["ui.router"])
                 url    : '/login',
                 data   : $scope.loginForm
             }).then(function(returnData){
+                console.log("loggin in user", returnData)
+                if (returnData.data.message){
+                   $scope.errMessage = returnData.data.message
+                }
                 if ( returnData.data.success ) { window.location.href="/#/challenge" }
-                else { console.log(returnData)}
+                else { console.log(returnData) }
             })
         }
    }
-
     function challengeController ($state, $sce, $http) {
       var challengeCtrl = this;
       challengeCtrl.currentChallenge = {}
       challengeCtrl.dailyReminder = {}
+      challengeCtrl.dailyReminders = []
+      challengeCtrl.completedDailyReminders = []
       challengeCtrl.$sce = $sce;
       challengeCtrl.totalPoints = 0;
       var challengeIndex = 0;
@@ -67,57 +72,43 @@ angular.module("Greenify", ["ui.router"])
          challengeCtrl.currentChallenge = res.data[challengeIndex]
       }
       challengeCtrl.completeMainTask = function(res){
-         $http.post('/api/users', challengeCtrl.currentChallenge)
-            .then(function(res){
+         $http.post('/api/users/challenges', challengeCtrl.currentChallenge)
+            .then(function(res) {
+               console.log('saves user response: ', res)
                challengeIndex++
                challengeCtrl.currentChallenge = challengeCtrl.challenges[challengeIndex]
                challengeCtrl.previousChallenge = challengeCtrl.challenges[challengeIndex-1]
                $http.get('/api/me')
                   .then(function(res){
                      challengeCtrl.totalPoints = res.data.totalPoints
-                     if (challengeCtrl.previousChallenge.dailyReminder)
-                        challengeCtrl.dailyReminders.push(challengeCtrl.previousChallenge)
                   })
             })
-
       }
-      challengeCtrl.completeDailyReminder = function(res){
-         console.log('Daily reminder button clicked!')
-         challengeCtrl.reminder = document.querySelector('input[type=checkbox]')
-         challengeCtrl.reminder.forEach(function(checked){
-            if (challengeCtrl.reminder.checked) {
-               challengeCtrl.totalPoints += 5
+      challengeCtrl.renderSteps = function(data){
+         challengeCtrl.thisUser = data
+         console.log("user object", challengeCtrl.thisUser, 'points: ', challengeCtrl.thisUser.totalPoints)
+         challengeCtrl.totalPoints = challengeCtrl.thisUser.totalPoints;
+         console.log('new total: ', challengeCtrl.totalPoints)
+         //challengeCtrl.totalPoints = data.totalPoints
+         challengeIndex = data.challengeStep.length
+         challengeCtrl.currentChallenge = challengeCtrl.challenges[challengeIndex]
+         challengeCtrl.dailyReminders = []
+         challengeCtrl.thisUser.challengeStep.forEach(function(step){
+            if (step.dailyReminder) {
+               challengeCtrl.dailyReminders.push(step)
             }
          })
-         challengeCtrl.totalPoints
-         // if (challengeCtrl.reminder.checked) {
-         //    console.log(challengeCtrl.reminder.checked)
-         //    challengeCtrl.totalPoints += 5
-         //    console.log(challengeCtrl.totalPoints)
-         // }
       }
-
       $http.get('/api/challenges')
          .then(challengeCtrl.completeApiCall)
          .then(function(res){
             $http.get('/api/me')
                .then(function(res){
-                  console.log('da res', res)
                   if(!res.data){
                      $state.go('log-in')
                   }
                   else {
-                     challengeCtrl.thisUser = res.data
-                     challengeCtrl.totalPoints = res.data.totalPoints
-                     challengeIndex = res.data.challengeStep.length
-                     challengeCtrl.currentChallenge = challengeCtrl.challenges[challengeIndex]
-                     challengeCtrl.dailyReminders = []
-                     challengeCtrl.thisUser.challengeStep.forEach(function(step){
-                        if (step.dailyReminder) {
-                           challengeCtrl.dailyReminders.push(step)
-                        }
-                     })
-                     challengeCtrl.dailyReminders
+                     challengeCtrl.renderSteps(res.data)
                   }
                }, function() {
                   $state.go('log-in')

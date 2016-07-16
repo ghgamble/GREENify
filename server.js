@@ -16,6 +16,7 @@ var app = express()
 
 var User = models.User
 var Challenge = models.Challenge
+var Progress = models.Progress
 //console.log('User', User)
 
 mongoose.connect('mongodb://localhost/greenify', function(error) {
@@ -107,7 +108,7 @@ app.get('/logout', function(req, res){
 app.post('/login', function(req, res, next){
     passport.authenticate('local', function(err, user, info) {
         if (err) { return next(err); }
-        if (!user) { return res.send({error : 'something went wrong :('}); }
+        if (!user) { return res.json({message : 'Password or username is incorrect'}); }
         req.logIn(user, function(err) {
             if (err) { return next(err); }
             return res.send({success:'success'});
@@ -129,20 +130,49 @@ app.get('/api/me', function(req, res){
    }
 })
 
+app.get('/api/progress/:id', function(req, res){
+   Progress.find({ user : req.params.id }, function(err, progresses){
+      res.send(progresses)
+   })
+})
+
 app.get('/api/challenges', function(req, res){
    Challenge.find({}, function(err, challenges){
       res.send(challenges)
    }).sort('stepNumber')
 })
 
-app.post('/api/users', function(req, res){
+app.post('/api/progress', function(req, res){
+   var newProgress = new Progress({
+      timeStamp: Date.now(),
+      completedStep: req.body.completedStep,
+      user: req.body.user
+   })
+   newProgress.save(function(saveErr, progress){
+
+      if (saveErr) {
+         console.error(saveErr)
+         res.status(500).send({ error:saveErr })
+      }
+      else {
+         console.log(progress)
+         res.send({ succes: 'success' })
+      }
+   })
+})
+
+app.post('/api/progress/batch', function(req, res){
+
+})
+
+app.post('/api/users/challenges', function(req, res){
    console.log(req.body)
-   res.send('challenge')
+   // res.send('challenge')
    User.findOne({'username' : req.user.username}, function(error, user){
       user.totalPoints += req.body.points
       user.challengeStep.push(req.body)
       user.save(function(error, user){
-
+         res.send(user)
       })
    })
 })

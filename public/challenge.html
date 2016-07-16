@@ -6,25 +6,11 @@
       <span>{{challengeCtrl.totalPoints}}</span>
       </div>
    </div>
-
-   <div class="steps" ng-show="challengeCtrl.thisUser.challengeStep.length >= 0">
-      <h3>Daily Reminders</h3>
-      <div>
-         <label ng-repeat="reminder in challengeCtrl.dailyReminders">
-            <input type="checkbox" id="reminder">
-            <span>Did you remember to {{reminder.reminderText}}</span>
-         </label>
-      </div>
-      <div>
-         <button type="submit" class="btn btn-danger main-button button" ng-click="challengeCtrl.completeDailyReminder()">Add Points</button>
-      </div>
-   </div>
-
    <div class="steps challenge">
-      <h3>Challenge</h3>
-      <span ng-bind-html="challengeCtrl.$sce.trustAsHtml(challengeCtrl.currentChallenge.step)"></span>
+      <h3 class="challenge-title">Challenge</h3>
+      <span class="challenge-text" ng-bind-html="challengeCtrl.$sce.trustAsHtml(challengeCtrl.currentChallenge.step)"></span>
       <div class="main-button">
-         <button class= "btn btn-danger btn-sm button main-button" ng-click="challengeCtrl.completeMainTask()">Complete Step</button>
+         <button class= "btn btn-danger btn-sm button main-button complete-button" ng-click="challengeCtrl.completeMainTask()">Complete Step</button>
       </div>
    </div>
    <div class="log-out-button">
