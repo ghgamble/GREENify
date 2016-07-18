@@ -5,8 +5,8 @@ angular.module("Greenify", ["ui.router"])
     .controller("loginController", loginController)
 
     GreenRouter.$inject = ["$stateProvider", "$urlRouterProvider"]
-    challengeController.$inject = ["$state", "$sce", "$http"]
     loginController.$inject = ["$scope", "$http"]
+    challengeController.$inject = ["$state", "$sce", "$http"]
 
     function GreenRouter ($stateProvider, $urlRouterProvider) {
       $stateProvider
@@ -32,7 +32,7 @@ angular.module("Greenify", ["ui.router"])
     }
 
     function loginController ($scope, $http) {
-      var loginCtrl = this;
+      var loginCtrl = this
       $scope.signup = function(){
             $http({
                 method : 'POST',
@@ -49,9 +49,7 @@ angular.module("Greenify", ["ui.router"])
                 url    : '/login',
                 data   : $scope.loginForm
             }).then(function(returnData){
-                if (returnData.data.message){
-                   $scope.errMessage = returnData.data.message
-                }
+                if (returnData.data.message){$scope.errMessage = returnData.data.message}
                 if ( returnData.data.success ) { window.location.href="/#/challenge" }
                 else { console.log(returnData) }
             })
@@ -59,10 +57,10 @@ angular.module("Greenify", ["ui.router"])
    }
 
     function challengeController ($state, $sce, $http) {
-      var challengeCtrl = this;
+      var challengeCtrl = this
       challengeCtrl.currentChallenge = {}
-      challengeCtrl.$sce = $sce;
-      var challengeIndex = 0;
+      challengeCtrl.$sce = $sce
+      var challengeIndex = 0
       challengeCtrl.completeApiCall = function(res){
          challengeCtrl.challenges = res.data
          challengeCtrl.currentChallenge = res.data[challengeIndex]
@@ -103,8 +101,8 @@ angular.module("Greenify", ["ui.router"])
      }
 if (window.location.port === "") {
    if (window.location.protocol == "http:") {
-      var restOfUrl = window.location.href.substr(5);
-      window.location = "https:" + restOfUrl;
+      var restOfUrl = window.location.href.substr(5)
+      window.location = "https:" + restOfUrl
    }
 }
-})();
+})()

@@ -31,7 +31,7 @@ app.sessionMiddleware = session({
 app.use(app.sessionMiddleware)
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(logger('dev'))
 app.use(express.static(__dirname + '/public'))
 if (port === 80) {
@@ -55,8 +55,8 @@ passport.deserializeUser(function(id, done) {
 
 passport.use(new LocalStrategy(
     function(username, password, done) {
-        User.findOne({ username: username }, function (err, user) {
-            if (err) { return done(err) }
+        User.findOne({username: username}, function (err, user) {
+            if (err) {return done(err)}
             if (!user) {
                  return done(null, false)
              }
@@ -74,10 +74,10 @@ passport.use(new LocalStrategy(
 
 app.isAuthenticated = function(req, res, next){
     if(req.isAuthenticated()){
-        return next();
+        return next()
     }
     console.log('get outta here!')
-    res.redirect('/');
+    res.redirect('/')
 }
 
 app.post('/signup', function(req, res){
@@ -89,11 +89,11 @@ app.post('/signup', function(req, res){
                 password: hash,
             });
             newUser.save(function(saveErr, user){
-                if ( saveErr ) {res.json ({message: 'The username and/or email address already in use'}) }
+                if (saveErr) {res.json({message: 'The username and/or email address already in use'})}
                 else {
                     req.logIn(user, function(loginErr){
-                        if ( loginErr ) {console.log("error signing up", loginErr)}
-                        else { res.send({success: 'success'}) }
+                        if (loginErr) {console.log("error signing up", loginErr)}
+                        else {res.send({success: 'success'})}
                     })
                 }
             })
@@ -102,25 +102,25 @@ app.post('/signup', function(req, res){
 })
 
 app.get('/logout', function(req, res){
-    req.logout();
-    req.session.destroy();
-    res.redirect('/');
+    req.logout()
+    req.session.destroy()
+    res.redirect('/')
 })
 
 app.post('/login', function(req, res, next){
     passport.authenticate('local', function(err, user, info) {
-        if (err) { return next(err); }
-        if (!user) { return res.json({message : 'Password or username is incorrect'}); }
+        if (err) {return next(err)}
+        if (!user) {return res.json({message : 'Password or username is incorrect'})}
         req.logIn(user, function(err) {
-            if (err) { return next(err); }
-            return res.send({success:'success'});
-        });
-    })(req, res, next);
+            if (err) {return next(err)}
+            return res.send({success:'success'})
+        })
+    })(req, res, next)
 })
 
 app.get('/api/me', function(req, res){
    if(req.user == undefined) {
-      res.status(403).send({ error: 'Not Logged in' })
+      res.status(403).send({error: 'Not Logged in'})
    } else {
       User.findOne({
          username: req.user.username
@@ -139,8 +139,6 @@ app.get('/api/challenges', function(req, res){
 })
 
 app.post('/api/users/challenges', function(req, res){
-   console.log(req.body)
-   // res.send('challenge')
    User.findOne({'username' : req.user.username}, function(error, user){
       user.totalPoints += req.body.points
       user.challengeStep.push(req.body)

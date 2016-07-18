@@ -1,12 +1,12 @@
-<div class="challenge-container container">
-   <div class="row total-points">
-      <div class="col-xs-12 score text-center">
+<div>
+   <div class="total-points">
+      <div class="score text-center">
       <h1 class="greeting">{{challengeCtrl.thisUser.username}}</h1>
-      <h3 class="points"> Total Points </h3>
+      <h3>Total Points</h3>
       <span>{{challengeCtrl.totalPoints}}</span>
       </div>
    </div>
-   <div class="steps challenge">
+   <div class="steps">
       <h3 class="challenge-title">Challenge</h3>
       <div class="challenge-text"><span ng-bind-html="challengeCtrl.$sce.trustAsHtml(challengeCtrl.currentChallenge.step)"></span></div>
       <div class="main-button">
