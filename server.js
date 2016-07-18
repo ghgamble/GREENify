@@ -34,9 +34,11 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(logger('dev'))
 app.use(express.static(__dirname + '/public'))
-var options = {
-   key: fs.readFileSync('/etc/letsencrypt/live/greenifyapp.com/privkey.pem'),
-   cert: fs.readFileSync('/etc/letsencrypt/live/greenifyapp.com/cert.pem')
+if (port === 80) {
+   var options = {
+      key: fs.readFileSync('/etc/letsencrypt/live/greenifyapp.com/privkey.pem'),
+      cert: fs.readFileSync('/etc/letsencrypt/live/greenifyapp.com/cert.pem')
+   }
 }
 
 app.use(passport.initialize())
@@ -153,6 +155,8 @@ app.listen(port, function(error){
     if(!error) console.log('Server started successfully on port:', port)
 })
 
-https.createServer(options, app).listen(443, function(){
-   console.log('HTTPS Started!')
-})
+if (port === 80) {
+   https.createServer(options, app).listen(443, function(){
+      console.log('HTTPS Started!')
+   })
+}
