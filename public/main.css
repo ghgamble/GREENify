@@ -134,6 +134,10 @@ body {
    margin-bottom: 35px;
 }
 
+.greeting {
+   color: #A32B1F;
+}
+
 .score {
    margin-top: 20px;
    margin-bottom: 20px;
