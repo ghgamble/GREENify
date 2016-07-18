@@ -113,6 +113,11 @@ body {
    margin: 30px;
 }
 
+.error-message {
+   color: #A32B1F;
+   margin-bottom: 40px;
+}
+
 /* Challenge.html */
 .total-points {
    max-width: 650px;
