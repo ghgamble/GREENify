@@ -1,17 +1,17 @@
 <div class="sign-up-form">
    <h3>New user? Sign-up here!</h3>
-   <form ng-submit="signup()" class="new-user">
+   <form ng-submit="signup()" class="user">
       <input class="inputs" placeholder="Username" ng-model="signupForm.username">
       <input class="inputs" placeholder="Email" ng-model="signupForm.email">
       <input class="inputs" placeholder="Password" type="password" ng-model="signupForm.password">
-      <input class="form-button" type="submit" value="Sign Up">
+      <input class="main-button button" type="submit" value="Sign Up">
    </form>
-
+   {{signupError}}
    <h3>Already signed up? Log in here!</h3>
-   <form ng-submit="login()" class="returning-user">
+   <form ng-submit="login()" class="user">
       <input class="inputs" placeholder="Username" ng-model="loginForm.username" autocomplete="on">
       <input class="inputs" placeholder="Password" type="password" ng-model="loginForm.password">
-      <input class="form-button" type="submit" value="Log In">
+      <input class="main-button button" type="submit" value="Log In">
    </form>
    {{errMessage}}
 </div>

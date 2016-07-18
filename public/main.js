@@ -39,17 +39,16 @@ angular.module("Greenify", ["ui.router"])
                 url    : '/signup',
                 data   : $scope.signupForm
             }).then(function(returnData){
+                if ( returnData.data.message ) {$scope.signupError = returnData.data.message}
                 if ( returnData.data.success ) {window.location.href="/#/challenge"}
             })
         }
-
         $scope.login = function(){
             $http({
                 method : 'POST',
                 url    : '/login',
                 data   : $scope.loginForm
             }).then(function(returnData){
-                console.log("loggin in user", returnData)
                 if (returnData.data.message){
                    $scope.errMessage = returnData.data.message
                 }
@@ -62,11 +61,7 @@ angular.module("Greenify", ["ui.router"])
     function challengeController ($state, $sce, $http) {
       var challengeCtrl = this;
       challengeCtrl.currentChallenge = {}
-      challengeCtrl.dailyReminder = {}
-      challengeCtrl.dailyReminders = []
-      challengeCtrl.completedDailyReminders = []
       challengeCtrl.$sce = $sce;
-      challengeCtrl.totalPoints = 0;
       var challengeIndex = 0;
       challengeCtrl.completeApiCall = function(res){
          challengeCtrl.challenges = res.data
@@ -75,7 +70,6 @@ angular.module("Greenify", ["ui.router"])
       challengeCtrl.completeMainTask = function(res){
          $http.post('/api/users/challenges', challengeCtrl.currentChallenge)
             .then(function(res) {
-               console.log('saves user response: ', res)
                challengeIndex++
                challengeCtrl.currentChallenge = challengeCtrl.challenges[challengeIndex]
                challengeCtrl.previousChallenge = challengeCtrl.challenges[challengeIndex-1]
@@ -87,18 +81,9 @@ angular.module("Greenify", ["ui.router"])
       }
       challengeCtrl.renderSteps = function(data){
          challengeCtrl.thisUser = data
-         console.log("user object", challengeCtrl.thisUser, 'points: ', challengeCtrl.thisUser.totalPoints)
          challengeCtrl.totalPoints = challengeCtrl.thisUser.totalPoints;
-         console.log('new total: ', challengeCtrl.totalPoints)
-         //challengeCtrl.totalPoints = data.totalPoints
          challengeIndex = data.challengeStep.length
          challengeCtrl.currentChallenge = challengeCtrl.challenges[challengeIndex]
-         challengeCtrl.dailyReminders = []
-         challengeCtrl.thisUser.challengeStep.forEach(function(step){
-            if (step.dailyReminder) {
-               challengeCtrl.dailyReminders.push(step)
-            }
-         })
       }
       $http.get('/api/challenges')
          .then(challengeCtrl.completeApiCall)

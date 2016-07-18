@@ -3,13 +3,19 @@ var mongoose = require('mongoose')
 var userSchema = mongoose.Schema({
    username: {
       type: String,
-      unique: true
+      unique: true,
+      required: true
    },
    email: {
       type: String,
-      unique: true
+      unique: true,
+      required: true,
+      match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
    },
-   password: String,
+   password: {
+      type: String,
+      required: true
+   },
    challengeStep: [{
       type: mongoose.Schema.ObjectId,
       ref: 'Challenge',

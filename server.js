@@ -1,6 +1,8 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var logger = require('morgan')
+var fs = require('fs')
+var https = require('https')
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
 var session = require('express-session')
@@ -8,8 +10,6 @@ var bcrypt = require('bcrypt')
 var logOut = require('express-passport-logout')
 var mongoose = require('mongoose')
 var models = require('./models')
-// var apiRouter = require('./api_routes')
-console.log('PORT', process.env.PORT)
 var port = process.env.PORT || 80
 
 var app = express()
@@ -17,7 +17,6 @@ var app = express()
 var User = models.User
 var Challenge = models.Challenge
 var Progress = models.Progress
-//console.log('User', User)
 
 mongoose.connect('mongodb://localhost/greenify', function(error) {
     if(error) console.error('ERROR starting mongoose!', error)
@@ -31,12 +30,14 @@ app.sessionMiddleware = session({
 })
 app.use(app.sessionMiddleware)
 
-// app.use(bodyParser()) // deprecated
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(logger('dev'))
 app.use(express.static(__dirname + '/public'))
-//app.use('/api/v0', apiRouter)
+var options = {
+   key: fs.readFileSync('/etc/letsencrypt/live/greenifyapp.com/privkey.pem'),
+   cert: fs.readFileSync('/etc/letsencrypt/live/greenifyapp.com/cert.pem')
+}
 
 app.use(passport.initialize())
 app.use(passport.session())
@@ -55,8 +56,8 @@ passport.use(new LocalStrategy(
         User.findOne({ username: username }, function (err, user) {
             if (err) { return done(err) }
             if (!user) {
-                return done(null, false)
-            }
+                 return done(null, false)
+             }
             bcrypt.compare(password, user.password, function(error, matched){
                 if (matched === true){
                     return done(null,user)
@@ -86,10 +87,10 @@ app.post('/signup', function(req, res){
                 password: hash,
             });
             newUser.save(function(saveErr, user){
-                if ( saveErr ) { res.send({ err:saveErr }) }
+                if ( saveErr ) {res.json ({message: 'The username and/or email address already in use'}) }
                 else {
                     req.logIn(user, function(loginErr){
-                        if ( loginErr ) { res.send({ err:loginErr }) }
+                        if ( loginErr ) {console.log("error signing up", loginErr)}
                         else { res.send({success: 'success'}) }
                     })
                 }
@@ -99,7 +100,6 @@ app.post('/signup', function(req, res){
 })
 
 app.get('/logout', function(req, res){
-    console.log("logging out ......", req.session);
     req.logout();
     req.session.destroy();
     res.redirect('/');
@@ -130,39 +130,10 @@ app.get('/api/me', function(req, res){
    }
 })
 
-app.get('/api/progress/:id', function(req, res){
-   Progress.find({ user : req.params.id }, function(err, progresses){
-      res.send(progresses)
-   })
-})
-
 app.get('/api/challenges', function(req, res){
    Challenge.find({}, function(err, challenges){
       res.send(challenges)
    }).sort('stepNumber')
-})
-
-app.post('/api/progress', function(req, res){
-   var newProgress = new Progress({
-      timeStamp: Date.now(),
-      completedStep: req.body.completedStep,
-      user: req.body.user
-   })
-   newProgress.save(function(saveErr, progress){
-
-      if (saveErr) {
-         console.error(saveErr)
-         res.status(500).send({ error:saveErr })
-      }
-      else {
-         console.log(progress)
-         res.send({ succes: 'success' })
-      }
-   })
-})
-
-app.post('/api/progress/batch', function(req, res){
-
 })
 
 app.post('/api/users/challenges', function(req, res){
@@ -180,4 +151,8 @@ app.post('/api/users/challenges', function(req, res){
 app.listen(port, function(error){
     if(error) console.log('ERROR starting server!', error)
     if(!error) console.log('Server started successfully on port:', port)
+})
+
+https.createServer(options, app).listen(443, function(){
+   console.log('HTTPS Started!')
 })

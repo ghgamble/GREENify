@@ -1,3 +1,36 @@
+/* Shared */
+/* Buttons */
+.button {
+   background: #6bd459;
+   border: 1px solid green;
+   color: #A32B1F;
+   font-size: 14px;
+   padding: 15px;
+   margin-bottom: 35px;
+   border-radius: 5px;
+   width: 130px;
+}
+
+.button a {
+   color: #A32B1F;
+}
+
+.button:hover {
+   color: #3E6A85;
+   background-color: #6bd459;
+   text-decoration: none;
+}
+
+.main-button {
+   margin-bottom: 20px;
+}
+
+.main-button:hover {
+   color: #3E6A85;
+   background-color: #6bd459;
+   text-decoration: none;
+}
+
 /* Main Page */
 /* Main Container */
 body {
@@ -52,26 +85,7 @@ body {
 
 .text-center {
    margin-top: 35px;
-}
-
-/* Buttons for home and challenge pages */
-.button {
-   background: #6bd459;
-   border: 1px solid green;
-   color: #A32B1F;
-   font-size: 14px;
-   padding: 15px;
-   margin-bottom: 35px;
-}
-
-.button a {
-   color: #A32B1F;
-}
-
-a:hover {
-   color: #3E6A85;
-   background-color: #6bd459;
-   text-decoration: none;
+   margin-bottom: 30px;
 }
 
 /* Log-in.html */
@@ -95,19 +109,7 @@ a:hover {
    opacity: 0.6;
 }
 
-.form-button {
-   background-color: #6bd459;
-   color: #A32B1F;
-   border-radius: 5px;
-   border: none;
-   width: 120px;
-}
-
-.new-user {
-   margin: 30px;
-}
-
-.returning-user {
+.user {
    margin: 30px;
 }
 
@@ -149,17 +151,6 @@ a:hover {
    position: relative;
 }
 
-/*.challenge {
-   display: flex;
-   flex-direction: column;
-}*/
-
-/*.main-step {
-   font-size: 20px;
-   margin-top: 15px;
-   margin-bottom: 20px;
-}*/
-
 .challenge-text {
    margin-top: 20px;
 }
@@ -171,38 +162,37 @@ a:hover {
    top: 70%;
 }
 
+.complete-button:hover {
+   color: #3E6A85;
+   background-color: #6bd459;
+}
+
 .challenge-title {
    margin-bottom: 10px;
 }
 
-.main-button {
-   /*margin-top: 10px;*/
-   margin-bottom: 20px;
-}
-
 .log-out-button {
    text-align: center;
+   margin-bottom: 30px;
 }
 
 /* Contact-us.html */
 .contact-form {
    max-width: 650px;
+   height: 200px;
    font-size: 22px;
    margin: 30px;
    background-color: rgba(255, 255, 255, 0.4);
    border: 1px solid black;
    margin: auto;
-   margin-top: 35px;
+   margin-top: 50px;
    text-align: center;
    color: black;
    padding: 5px;
    border-radius: 10px;
 }
 
-.email {
-   text-decoration: none;
-}
-
-.email a:hover {
-   text-decoration: none;
+.contact-text {
+   margin-top: 30px;
+   margin-bottom: 50px;
 }
