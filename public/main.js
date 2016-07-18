@@ -101,7 +101,7 @@ angular.module("Greenify", ["ui.router"])
                })
          })
      }
-if (window.location.port === "80") {
+if (window.location.port === "") {
    if (window.location.protocol == "http:") {
       var restOfUrl = window.location.href.substr(5);
       window.location = "https:" + restOfUrl;
