@@ -8,7 +8,8 @@
    padding: 15px;
    margin-bottom: 35px;
    border-radius: 5px;
-   width: 130px;
+   width: 150px;
+   margin-top: 20px;
 }
 
 .button a {
@@ -23,6 +24,8 @@
 
 .main-button {
    margin-bottom: 20px;
+   margin-top: 40px;
+   width: 150px;
 }
 
 .main-button:hover {
@@ -44,7 +47,6 @@ body {
 .jumbotron {
   background-color: rgba(107, 212, 89, 0.60);
   color: #0e4c03;
-  margin-bottom: 8px;
   padding-top: 10px;
   padding-bottom: 10px;
   margin-left: 0;
@@ -72,15 +74,15 @@ body {
    max-width: 650px;
    font-size: 22px;
    margin: 30px;
-   background-color: rgba(255, 255, 255, 0.4);
+   background-color: rgba(255, 255, 255, 0.6);
    border: 1px solid black;
    margin: auto;
-   margin-top: 35px;
+   margin-top: 50px;
    text-align: center;
    color: black;
-   padding: 5px;
+   padding: 20px;
    border-radius: 10px;
-   margin-bottom: 20px;
+   margin-bottom: 50px;
 }
 
 .text-center {
@@ -91,22 +93,22 @@ body {
 /* Log-in.html */
 .sign-up-form {
    max-width: 650px;
-   font-size: 22px;
+   font-size: 20px;
    margin: 30px;
-   background-color: rgba(255, 255, 255, 0.4);
+   background-color: rgba(255, 255, 255, 0.6);
    border: 1px solid black;
    margin: auto;
-   margin-top: 35px;
+   margin-top: 50px;
    text-align: center;
    color: black;
-   padding: 5px;
+   padding: 20px;
    border-radius: 10px;
-   margin-bottom: 35px;
+   margin-bottom: 50px;
 }
 
 .inputs {
    margin: 10px;
-   opacity: 0.6;
+   opacity: 0.7;
 }
 
 .user {
@@ -121,17 +123,17 @@ body {
 /* Challenge.html */
 .total-points {
    max-width: 650px;
-   font-size: 22px;
+   font-size: 20px;
    margin: 30px;
-   background-color: rgba(255, 255, 255, 0.4);
+   background-color: rgba(255, 255, 255, 0.6);
    border: 1px solid black;
    margin: auto;
-   margin-top: 20px;
+   margin-top: 50px;
    text-align: center;
    color: black;
-   padding: 5px;
+   padding: 20px;
    border-radius: 10px;
-   margin-bottom: 35px;
+   margin-bottom: 50px;
 }
 
 .greeting {
@@ -146,22 +148,23 @@ body {
 .steps {
    max-width: 650px;
    height: 400px;
-   font-size: 22px;
+   font-size: 20px;
    margin: 30px;
-   background-color: rgba(255, 255, 255, 0.4);
+   background-color: rgba(255, 255, 255, 0.6);
    border: 1px solid black;
    margin: auto;
-   margin-top: 20px;
+   margin-top: 50px;
    text-align: center;
    color: black;
-   padding: 5px;
+   padding: 20px;
    border-radius: 10px;
-   margin-bottom: 35px;
+   margin-bottom: 50px;
    position: relative;
 }
 
 .challenge-text {
    margin-top: 60px;
+   font-size: 24px;
 }
 
 .complete-button {
@@ -177,7 +180,7 @@ body {
 }
 
 .challenge-title {
-   margin-bottom: 10px;
+   margin-bottom: 28px;
 }
 
 .log-out-button {
@@ -189,15 +192,15 @@ body {
 .contact-form {
    max-width: 650px;
    height: 200px;
-   font-size: 22px;
+   font-size: 20px;
    margin: 30px;
-   background-color: rgba(255, 255, 255, 0.4);
+   background-color: rgba(255, 255, 255, 0.6);
    border: 1px solid black;
    margin: auto;
    margin-top: 50px;
    text-align: center;
    color: black;
-   padding: 5px;
+   padding: 20px;
    border-radius: 10px;
 }
 
