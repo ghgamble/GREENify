@@ -66,17 +66,23 @@ angular.module("Greenify", ["ui.router"])
          challengeCtrl.currentChallenge = res.data[challengeIndex]
       }
       challengeCtrl.completeMainTask = function(res){
+         challengeCtrl.currentChallenge.skipped = false
          $http.post('/api/users/challenges', challengeCtrl.currentChallenge)
             .then(function(res) {
-               challengeIndex++
-               challengeCtrl.currentChallenge = challengeCtrl.challenges[challengeIndex]
+               challengeCtrl.currentChallenge = challengeCtrl.challenges[++challengeIndex]
                challengeCtrl.previousChallenge = challengeCtrl.challenges[challengeIndex-1]
-               $http.get('/api/me')
-                  .then(function(res){
-                     challengeCtrl.totalPoints = res.data.totalPoints
-                  })
+               challengeCtrl.totalPoints = res.data.totalPoints
             })
       }
+      challengeCtrl.skipTask = function(res) {
+         challengeCtrl.currentChallenge.skipped = true
+         $http.post('/api/users/challenges', challengeCtrl.currentChallenge)
+            .then(function(res){
+               challengeCtrl.currentChallenge = challengeCtrl.challenges[++challengeIndex]
+               challengeCtrl.previousChallenge = challengeCtrl.challenges[challengeIndex-1]
+            })
+         }
+
       challengeCtrl.renderSteps = function(data){
          challengeCtrl.thisUser = data
          challengeCtrl.totalPoints = challengeCtrl.thisUser.totalPoints;
@@ -99,7 +105,8 @@ angular.module("Greenify", ["ui.router"])
                })
          })
      }
-if (window.location.port === "") {
+
+if(window.location.port === "") {
    if (window.location.protocol == "http:") {
       var restOfUrl = window.location.href.substr(5)
       window.location = "https:" + restOfUrl

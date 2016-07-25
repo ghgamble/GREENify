@@ -35,7 +35,8 @@ var challengeSchema = mongoose.Schema({
    step: String,
    points: Number,
    dailyReminder: Boolean,
-   reminderText: String
+   reminderText: String,
+   Skipped: Boolean
 })
 
 var progressSchema = mongoose.Schema({
