@@ -140,7 +140,9 @@ app.get('/api/challenges', function(req, res){
 
 app.post('/api/users/challenges', function(req, res){
    User.findOne({'username' : req.user.username}, function(error, user){
-      user.totalPoints += req.body.points
+      if (!req.body.skipped) {
+         user.totalPoints += req.body.points
+      }
       user.challengeStep.push(req.body)
       user.save(function(error, user){
          res.send(user)

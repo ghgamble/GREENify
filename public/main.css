@@ -147,7 +147,7 @@ body {
 
 .steps {
    max-width: 650px;
-   height: 400px;
+   height: 550px;
    font-size: 20px;
    margin: 30px;
    background-color: rgba(255, 255, 255, 0.6);
@@ -172,6 +172,13 @@ body {
    left: 50%;
    transform: translateX(-50%);
    top: 70%;
+}
+
+.skip-button {
+   position: absolute;
+   left: 50%;
+   transform: translateX(-50%);
+   top: 55%;
 }
 
 .complete-button:hover {
