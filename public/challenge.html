@@ -6,7 +6,9 @@
       <span>{{challengeCtrl.totalPoints}}</span>
       </div>
    </div>
-   <div class="steps">
+   <!-- <div ng-show="!challengeCtrl.displayMessage()">Congratulations! You have completed the challenge!</div> -->
+   <div class="steps" >
+      <!-- ng-show="challengeCtrl.challengeStep.length" ng-show="challengeCtrl.displayMessage()"-->
       <h3 class="challenge-title">Challenge</h3>
       <div class="challenge-text"><span ng-bind-html="challengeCtrl.$sce.trustAsHtml(challengeCtrl.currentChallenge.step)"></span></div>
       <div class="main-button">
