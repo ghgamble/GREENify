@@ -167,6 +167,12 @@ body {
    font-size: 24px;
 }
 
+.complete-text {
+   margin-top: 150px;
+   font-size: 22px;
+   color: #A32B1F;
+}
+
 .complete-button {
    position: absolute;
    left: 50%;
