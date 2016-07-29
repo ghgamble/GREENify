@@ -8,13 +8,12 @@
    </div>
    <div class="steps">
       <h3 class="challenge-title">Challenge</h3>
-      <div class="complete-text" ng-if="challengeCtrl.currentChallenge.stepNumber == challenegeCtrl.challenges.length">Congratulations! You have completed the challenge!</div>
+      <div class="complete-text" ng-if="challengeCtrl.currentChallenge.stepNumber == challengeIndex.length">Congratulations! You have completed the challenge!</div>
       <div class="challenge-text"><span ng-bind-html="challengeCtrl.$sce.trustAsHtml(challengeCtrl.currentChallenge.step)"></span></div>
-      <div class="main-button" ng-if="challengeCtrl.currentChallenge.stepNumber !== challenegeCtrl.challenges.length || challengeCtrl.thisUser.challengeStep.length === 0">
-         <!-- ng-if="challengeCtrl.currentChallenge !== challenegeCtrl.challenges.length || challengeCtrl.thisUser.challengeStep.length === 0" -->
+      <div class="main-button" ng-if="challengeCtrl.currentChallenge.stepNumber !== challengeCtrl.thisUser.challengeIndex.length || challengeCtrl.thisUser.challengeIndex.length === 0">
          <button class= "button main-button complete-button" ng-click="challengeCtrl.completeMainTask()">COMPLETE STEP</button>
       </div>
-      <div class="main-button" ng-if="challengeCtrl.currentChallenge.stepNumber !== challenegeCtrl.challenges.length || challengeCtrl.thisUser.challengeStep.length === 0">
+      <div class="main-button" ng-if="challengeCtrl.currentChallenge.stepNumber !== challengeCtrl.thisUser.challengeIndex.length || challengeCtrl.thisUser.challengeIndex.length === 0">
          <button class="button main-button skip-button" ng-click="challengeCtrl.skipTask()">SKIP</button>
       </div>
    </div>

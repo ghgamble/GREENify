@@ -72,10 +72,6 @@ angular.module("Greenify", ["ui.router"])
                challengeCtrl.currentChallenge = challengeCtrl.challenges[++challengeIndex]
                challengeCtrl.previousChallenge = challengeCtrl.challenges[challengeIndex-1]
                challengeCtrl.totalPoints = res.data.totalPoints
-               //console.log(res.data)
-               console.log(challengeCtrl.challenges.length)
-               console.log(challengeCtrl.currentChallenge.stepNumber)
-
             })
       }
       challengeCtrl.skipTask = function(res) {
@@ -84,9 +80,6 @@ angular.module("Greenify", ["ui.router"])
             .then(function(res){
                challengeCtrl.currentChallenge = challengeCtrl.challenges[++challengeIndex]
                challengeCtrl.previousChallenge = challengeCtrl.challenges[challengeIndex-1]
-               console.log(challengeCtrl.challenges.length)
-               console.log(challengeCtrl.currentChallenge.stepNumber)
-
             })
          }
 
@@ -95,9 +88,6 @@ angular.module("Greenify", ["ui.router"])
          challengeCtrl.totalPoints = challengeCtrl.thisUser.totalPoints;
          challengeIndex = data.challengeStep.length
          challengeCtrl.currentChallenge = challengeCtrl.challenges[challengeIndex]
-         // console.log(challengeCtrl.thisUser.challengeStep.length)
-         console.log(challengeCtrl.challenges.length)
-         console.log(challengeCtrl.currentChallenge)
       }
       $http.get('/api/challenges')
          .then(challengeCtrl.completeApiCall)

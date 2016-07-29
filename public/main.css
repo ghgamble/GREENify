@@ -1,223 +1,223 @@
 /* Shared */
 /* Buttons */
 .button {
-   background: #6bd459;
-   border: 1px solid green;
-   color: #A32B1F;
-   font-size: 14px;
-   padding: 15px;
-   margin-bottom: 35px;
-   border-radius: 5px;
-   width: 150px;
-   margin-top: 20px;
+     background: #6bd459;
+     border: 1px solid green;
+     color: #A32B1F;
+     font-size: 14px;
+     padding: 15px;
+     margin-bottom: 35px;
+     border-radius: 5px;
+     width: 150px;
+     margin-top: 20px;
 }
 
 .button a {
-   color: #A32B1F;
+     color: #A32B1F;
 }
 
 .button:hover {
-   color: #3E6A85;
-   background-color: #6bd459;
-   text-decoration: none;
+     color: #3E6A85;
+     background-color: #6bd459;
+     text-decoration: none;
 }
 
 .main-button {
-   margin-bottom: 20px;
-   margin-top: 40px;
-   width: 150px;
+     margin-bottom: 20px;
+     margin-top: 40px;
+     width: 150px;
 }
 
 .main-button:hover {
-   color: #3E6A85;
-   background-color: #6bd459;
-   text-decoration: none;
+     color: #3E6A85;
+     background-color: #6bd459;
+     text-decoration: none;
 }
 
 /* Main Page */
 /* Main Container */
 body {
-  background: url("https://images.unsplash.com/uploads/14114036359651bd991f1/b3ed8fdf?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=f522d9aa3c2ff08ee35e06b019e9baa7") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+     background: url("https://images.unsplash.com/uploads/14114036359651bd991f1/b3ed8fdf?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=f522d9aa3c2ff08ee35e06b019e9baa7") no-repeat center center fixed;
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+     background-size: cover;
 }
 
 .jumbotron {
-  background-color: rgba(107, 212, 89, 0.60);
-  color: #0e4c03;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-left: 0;
-  margin-right: 0;
+     background-color: rgba(107, 212, 89, 0.60);
+     color: #0e4c03;
+     padding-top: 10px;
+     padding-bottom: 10px;
+     margin-left: 0;
+     margin-right: 0;
 }
 
 /* Navigation */
 .navbar {
-  border: none;
-  background-color: #6BD459;
-  background-image: none;
-  color: #A32B1F;
+     border: none;
+     background-color: #6BD459;
+     background-image: none;
+     color: #A32B1F;
 }
 
 #li-font a {
-  color: #A32B1F;
+     color: #A32B1F;
 }
 
 #li-font a:hover {
-   color: #3E6A85;
+     color: #3E6A85;
 }
 
 /* Home.html */
 .game-description {
-   max-width: 650px;
-   font-size: 22px;
-   margin: 30px;
-   background-color: rgba(255, 255, 255, 0.6);
-   border: 1px solid black;
-   margin: auto;
-   margin-top: 50px;
-   text-align: center;
-   color: black;
-   padding: 20px;
-   border-radius: 10px;
-   margin-bottom: 50px;
+     max-width: 650px;
+     font-size: 22px;
+     margin: 30px;
+     background-color: rgba(255, 255, 255, 0.6);
+     border: 1px solid black;
+     margin: auto;
+     margin-top: 50px;
+     text-align: center;
+     color: black;
+     padding: 20px;
+     border-radius: 10px;
+     margin-bottom: 50px;
 }
 
 .text-center {
-   margin-top: 35px;
-   margin-bottom: 30px;
+     margin-top: 35px;
+     margin-bottom: 30px;
 }
 
 /* Log-in.html */
 .sign-up-form {
-   max-width: 650px;
-   font-size: 20px;
-   margin: 30px;
-   background-color: rgba(255, 255, 255, 0.6);
-   border: 1px solid black;
-   margin: auto;
-   margin-top: 50px;
-   text-align: center;
-   color: black;
-   padding: 20px;
-   border-radius: 10px;
-   margin-bottom: 50px;
+     max-width: 650px;
+     font-size: 20px;
+     margin: 30px;
+     background-color: rgba(255, 255, 255, 0.6);
+     border: 1px solid black;
+     margin: auto;
+     margin-top: 50px;
+     text-align: center;
+     color: black;
+     padding: 20px;
+     border-radius: 10px;
+     margin-bottom: 50px;
 }
 
 .inputs {
-   margin: 10px;
-   opacity: 0.7;
+     margin: 10px;
+     opacity: 0.7;
 }
 
 .user {
-   margin: 30px;
+     margin: 30px;
 }
 
 .error-message {
-   color: #A32B1F;
-   margin-bottom: 40px;
+     color: #A32B1F;
+     margin-bottom: 40px;
 }
 
 /* Challenge.html */
 .total-points {
-   max-width: 650px;
-   font-size: 20px;
-   margin: 30px;
-   background-color: rgba(255, 255, 255, 0.6);
-   border: 1px solid black;
-   margin: auto;
-   margin-top: 50px;
-   text-align: center;
-   color: black;
-   padding: 20px;
-   border-radius: 10px;
-   margin-bottom: 50px;
+     max-width: 650px;
+     font-size: 20px;
+     margin: 30px;
+     background-color: rgba(255, 255, 255, 0.6);
+     border: 1px solid black;
+     margin: auto;
+     margin-top: 50px;
+     text-align: center;
+     color: black;
+     padding: 20px;
+     border-radius: 10px;
+     margin-bottom: 50px;
 }
 
 .greeting {
-   color: #A32B1F;
+     color: #A32B1F;
 }
 
 .score {
-   margin-top: 20px;
-   margin-bottom: 20px;
+     margin-top: 20px;
+     margin-bottom: 20px;
 }
 
 .steps {
-   max-width: 650px;
-   height: 550px;
-   font-size: 20px;
-   margin: 30px;
-   background-color: rgba(255, 255, 255, 0.6);
-   border: 1px solid black;
-   margin: auto;
-   margin-top: 50px;
-   text-align: center;
-   color: black;
-   padding: 20px;
-   border-radius: 10px;
-   margin-bottom: 50px;
-   position: relative;
+     max-width: 650px;
+     height: 550px;
+     font-size: 20px;
+     margin: 30px;
+     background-color: rgba(255, 255, 255, 0.6);
+     border: 1px solid black;
+     margin: auto;
+     margin-top: 50px;
+     text-align: center;
+     color: black;
+     padding: 20px;
+     border-radius: 10px;
+     margin-bottom: 50px;
+     position: relative;
 }
 
 .challenge-text {
-   margin-top: 60px;
-   font-size: 24px;
+     margin-top: 60px;
+     font-size: 24px;
 }
 
 .complete-text {
-   margin-top: 150px;
-   font-size: 22px;
-   color: #A32B1F;
+     margin-top: 150px;
+     font-size: 22px;
+     color: #A32B1F;
 }
 
 .complete-button {
-   position: absolute;
-   left: 50%;
-   transform: translateX(-50%);
-   top: 70%;
+     position: absolute;
+     left: 50%;
+     transform: translateX(-50%);
+     top: 70%;
 }
 
 .skip-button {
-   position: absolute;
-   left: 50%;
-   transform: translateX(-50%);
-   top: 55%;
+     position: absolute;
+     left: 50%;
+     transform: translateX(-50%);
+     top: 55%;
 }
 
 .complete-button:hover {
-   color: #3E6A85;
-   background-color: #6bd459;
+     color: #3E6A85;
+     background-color: #6bd459;
 }
 
 .challenge-title {
-   margin-bottom: 28px;
+     margin-bottom: 28px;
 }
 
 .log-out-button {
-   text-align: center;
-   margin-bottom: 30px;
+     text-align: center;
+     margin-bottom: 30px;
 }
 
 /* Contact-us.html */
 .contact-form {
-   max-width: 650px;
-   height: 200px;
-   font-size: 20px;
-   margin: 30px;
-   background-color: rgba(255, 255, 255, 0.6);
-   border: 1px solid black;
-   margin: auto;
-   margin-top: 50px;
-   text-align: center;
-   color: black;
-   padding: 20px;
-   border-radius: 10px;
+     max-width: 650px;
+     height: 200px;
+     font-size: 20px;
+     margin: 30px;
+     background-color: rgba(255, 255, 255, 0.6);
+     border: 1px solid black;
+     margin: auto;
+     margin-top: 50px;
+     text-align: center;
+     color: black;
+     padding: 20px;
+     border-radius: 10px;
 }
 
 .contact-text {
-   margin-top: 30px;
-   margin-bottom: 50px;
+     margin-top: 30px;
+     margin-bottom: 50px;
 }

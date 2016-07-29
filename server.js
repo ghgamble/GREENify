@@ -19,14 +19,14 @@ var Challenge = models.Challenge
 var Progress = models.Progress
 
 mongoose.connect('mongodb://localhost/greenify', function(error) {
-    if(error) console.error('ERROR starting mongoose!', error)
-    else console.log('Mongoose connected successfully')
+     if(error) console.error('ERROR starting mongoose!', error)
+     else console.log('Mongoose connected successfully')
 })
 
 app.sessionMiddleware = session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
+     secret: 'keyboard cat',
+     resave: false,
+     saveUninitialized: true,
 })
 app.use(app.sessionMiddleware)
 
@@ -35,59 +35,59 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(logger('dev'))
 app.use(express.static(__dirname + '/public'))
 if (port === 80) {
-   var options = {
-      key: fs.readFileSync('/etc/letsencrypt/live/greenifyapp.com/privkey.pem'),
-      cert: fs.readFileSync('/etc/letsencrypt/live/greenifyapp.com/cert.pem')
-   }
+     var options = {
+          key: fs.readFileSync('/etc/letsencrypt/live/greenifyapp.com/privkey.pem'),
+          cert: fs.readFileSync('/etc/letsencrypt/live/greenifyapp.com/cert.pem')
+     }
 }
 
 app.use(passport.initialize())
 app.use(passport.session())
 
 passport.serializeUser(function(user, done) {
-    done(null, user.id)
+     done(null, user.id)
 })
 passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
-        done(err, user)
-    })
+     User.findById(id, function(err, user) {
+          done(err, user)
+     })
 })
 
 passport.use(new LocalStrategy(
-    function(username, password, done) {
-        User.findOne({username: username}, function (err, user) {
-            if (err) {return done(err)}
-            if (!user) {
-                 return done(null, false)
-             }
-            bcrypt.compare(password, user.password, function(error, matched){
-                if (matched === true){
-                    return done(null,user)
-                }
+     function(username, password, done) {
+          User.findOne({username: username}, function (err, user) {
+               if (err) {return done(err)}
+               if (!user) {
+                    return done(null, false)
+               }
+               bcrypt.compare(password, user.password, function(error, matched){
+                    if (matched === true){
+                         return done(null,user)
+                    }
                 else {
                     return done(null, false)
                 }
             })
         })
-    }
+   }
 ))
 
 app.isAuthenticated = function(req, res, next){
-    if(req.isAuthenticated()){
-        return next()
-    }
-    console.log('get outta here!')
-    res.redirect('/')
+     if(req.isAuthenticated()){
+          return next()
+     }
+     console.log('get outta here!')
+     res.redirect('/')
 }
 
 app.post('/signup', function(req, res){
-    bcrypt.genSalt(11, function(error, salt){
-        bcrypt.hash(req.body.password, salt, function(hashError, hash){
-            var newUser = new User({
-                username: req.body.username,
-                email: req.body.email,
-                password: hash,
-            });
+     bcrypt.genSalt(11, function(error, salt){
+          bcrypt.hash(req.body.password, salt, function(hashError, hash){
+               var newUser = new User({
+                    username: req.body.username,
+                    email: req.body.email,
+                    password: hash,
+               });
             newUser.save(function(saveErr, user){
                 if (saveErr) {res.json({message: 'The username and/or email address already in use'})}
                 else {
